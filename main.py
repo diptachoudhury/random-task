@@ -1,12 +1,21 @@
 from fastapi import FastAPI
 import random
 from typing import Dict, Any, List
+from fastapi.middleware.cors import CORSMiddleware # Import CORSMiddleware
 
 app = FastAPI(
     title="Simple Random Jira Task API",
     description="A fast API to fetch random mock Jira tasks.",
     version="1.0.0",
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          
+    allow_credentials=True,       
+    allow_methods=["*"],          
+    allow_headers=["*"],          
+)    
 
 
 MOCK_JIRA_TASKS: List[Dict[str, Any]] = [
